@@ -10,5 +10,9 @@ public class Main {
         Product prodotto2 = prodotto.extract(2);
         System.out.println(prodotto.getTotalPrice());
         System.out.println(prodotto2.getTotalPrice());
+
+        Cart carrello = new Cart(50, 5 );
+        System.out.println("Nel carrello ci sono: " + carrello);
+
     }
 }
