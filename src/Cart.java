@@ -33,6 +33,14 @@ public class Cart {
     }
 
     public void addProduct(Product product) {
+        if (lastFreeIndex >= productsInCart.length) {
+            System.out.println("Too many products in the cart!");
+            return;
+        }
+        if (getTotalPrice() + product.getTotalPrice() > budget) {
+            System.out.println("OUT of Budget!");
+            return;
+        }
         productsInCart[lastFreeIndex] = product;
         lastFreeIndex++;
     }
