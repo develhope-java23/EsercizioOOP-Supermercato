@@ -12,6 +12,8 @@ public class Main {
         System.out.println(prodotto2.getTotalPrice());
 
         Cart carrello = new Cart(50, 5 );
+        carrello.addProduct(prodotto);
+        carrello.addProduct(prodotto1);
         System.out.println("Nel carrello ci sono: " + carrello);
 
     }
