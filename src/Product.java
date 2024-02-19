@@ -12,6 +12,15 @@ public class Product {
         this.quantity = 1;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
+    }
+
     public Product(String name, int quantity, float price) {
         this.name = name;
         this.price = price;

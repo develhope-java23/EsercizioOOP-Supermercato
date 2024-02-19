@@ -15,6 +15,7 @@ public class Main {
         carrello.addProduct(prodotto);
         carrello.addProduct(prodotto1);
         System.out.println("Nel carrello ci sono: " + carrello);
+        System.out.println("Final Checkout = " + carrello.getTotalPrice());
 
     }
 }
