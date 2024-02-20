@@ -27,14 +27,29 @@ public class Product {
         this.quantity = quantity;
     }
 
+    public float getQuantity() {
+        return quantity;
+    }
+    public String getName(){
+        return name;
+    }
+
+    public void decreaseQuantity(int quantity) {
+        this.quantity -= quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public float getTotalPrice() {
 
         return this.quantity * this.price;
     }
 
-    public Product extract(int quantity){
+    public Product extract(int quantity) {
 
-        if (quantity > this.quantity){
+        if (quantity > this.quantity) {
             System.out.println("Err");
             return null;
         }

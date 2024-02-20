@@ -17,5 +17,16 @@ public class Main {
         System.out.println("Nel carrello ci sono: " + carrello);
         System.out.println("Final Checkout = " + carrello.getTotalPrice());
 
+        Supermarket supermarket = new Supermarket(3,10);
+        System.out.println(supermarket);
+        supermarket.add(prodotto1);
+        System.out.println(supermarket);
+        supermarket.buy(carrello,prodotto1,3);
+        System.out.println(supermarket);
+        System.out.println("Nel carrello ci sono: " + carrello);
+        System.out.println("Final Checkout = " + carrello.getTotalPrice());
+
+
+
     }
 }
