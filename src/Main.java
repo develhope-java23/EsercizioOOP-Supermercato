@@ -1,10 +1,10 @@
 public class Main {
     public static void main(String[] args) {
 
-        Product prodotto = new Product("pizza", 5, 2.0f);
+        Product prodotto = new Product("pizza", 5, 2.0f,ProductCategory.FOOD);
         System.out.println(prodotto.getTotalPrice());
 
-        Product prodotto1 = new Product("Asparago", 3, 0.5f);
+        Product prodotto1 = new Product("Asparago", 3, 0.5f,ProductCategory.FOOD);
         System.out.println(prodotto1.getTotalPrice());
 
         Product prodotto2 = prodotto.extract(2);
@@ -17,7 +17,7 @@ public class Main {
         System.out.println("Nel carrello ci sono: " + carrello);
         System.out.println("Final Checkout = " + carrello.getTotalPrice());
 
-        DiscountedProduct discountedPizza = new DiscountedProduct("Pizza",5,2.0f, 30.0f);
+        DiscountedProduct discountedPizza = new DiscountedProduct("Pizza",5,2.0f, 30.0f,ProductCategory.FOOD);
         System.out.println(discountedPizza.getTotalPrice());
 
     }

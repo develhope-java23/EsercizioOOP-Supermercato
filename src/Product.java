@@ -1,17 +1,11 @@
 public class Product {
-
     private String name;
 
     private int quantity;
 
     private float price;
 
-    public Product(String name, float price) {
-        this.name = name;
-        this.price = price;
-        this.quantity = 1;
-    }
-
+    private ProductCategory category;
     @Override
     public String toString() {
         return "Product{" +
@@ -21,10 +15,11 @@ public class Product {
                 '}';
     }
 
-    public Product(String name, int quantity, float price) {
+    public Product(String name, int quantity, float price, ProductCategory category) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.category=category;
     }
 
     public float getTotalPrice() {
@@ -41,6 +36,6 @@ public class Product {
 
         this.quantity -= quantity;
 
-        return new Product(this.name, quantity, this.price);
+        return new Product(this.name, quantity, this.price, this.category);
     }
 }
