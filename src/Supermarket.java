@@ -26,9 +26,9 @@ public class Supermarket {
             stock[emptyStock] = product;
             this.emptySpace -= product.getQuantity();
         } else if (this.emptySpace < product.getQuantity()) {
-            System.out.println("Non c'è abbastanza spazio libero per i prodotti");
+            System.out.println("Non c'è abbastanza spazio libero in stock per i prodotti");
         } else if (emptyStock < 0) {
-            System.out.println("Non c'è abbastanza spazio libero per i prodotti");
+            System.out.println("Non c'è abbastanza spazio libero in stock per i prodotti");
         }
     }
 
@@ -36,15 +36,10 @@ public class Supermarket {
         if (productInStock(productName) >= 0) {
             int productIndex = productInStock(productName);
             if (stock[productIndex].getQuantity() > quantity) {
-                Product tempProduct = stock[productIndex];
-                tempProduct.setQuantity(quantity);
-                cart.addProduct(tempProduct);
-                stock[productIndex].decreaseQuantity(quantity);
+                cart.addProduct(stock[productIndex].extract(quantity));
                 emptySpace += quantity;
             } else if (stock[productIndex].getQuantity() == quantity) {
-                Product tempProduct = stock[productIndex];
-                tempProduct.setQuantity(quantity);
-                cart.addProduct(tempProduct);
+                cart.addProduct(stock[productIndex].extract(quantity));
                 stock[productIndex] = null;
                 emptySpace += quantity;
             } else if (stock[productIndex].getQuantity() < quantity){

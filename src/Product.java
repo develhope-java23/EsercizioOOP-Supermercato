@@ -30,13 +30,6 @@ public class Product {
     public float getQuantity() {
         return quantity;
     }
-    public String getName(){
-        return name;
-    }
-
-    public void decreaseQuantity(int quantity) {
-        this.quantity -= quantity;
-    }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
