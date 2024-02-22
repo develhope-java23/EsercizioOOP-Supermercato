@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Supermarket {
     Product[] stock;
@@ -15,26 +16,39 @@ public class Supermarket {
     }
 
     public void add(Product product) {
-        int emptyStock = -1;
-        for (int i = 0; i < stock.length; i++) {
-            if (stock[i] == null) {
-                emptyStock = i;
-                break;
-            }
-        }
-        if (this.emptySpace >= product.getQuantity() && emptyStock >= 0) {
-            stock[emptyStock] = product;
-            this.emptySpace -= product.getQuantity();
-        } else if (this.emptySpace < product.getQuantity()) {
+        if (this.emptySpace < product.getQuantity()) {
             System.out.println("Non c'è abbastanza spazio libero in stock per i prodotti");
-        } else if (emptyStock < 0) {
-            System.out.println("Non c'è abbastanza spazio libero in stock per i prodotti");
+            return;
         }
+        int productInStockIndex = getProductIndex(product);
+        int emptyStock = findEmptyStock();
+        if (emptyStock < 0 && productInStockIndex < 0) {
+            System.out.println("Non c'è abbastanza spazio libero in stock per i prodotti");
+            return;
+        }
+        if (productInStockIndex >= 0 && this.emptySpace >= product.getQuantity()) {
+            emptySpace -= product.getQuantity();
+            stock[productInStockIndex].addQuantity(product.getQuantity());
+            return;
+        }
+
+        this.emptySpace -= product.getQuantity();
+        stock[emptyStock] = product;
+
+
     }
 
-    public void buy(Cart cart, Product productName, int quantity) {
-        if (productInStock(productName) >= 0) {
-            int productIndex = productInStock(productName);
+    public void buy(Cart cart, Product product, int quantity) {
+        int productIndex = getProductIndex(product);
+        if (getProductIndex(product) < 0) {
+            System.out.println("We are sorry to inform you that the product request is not present in our supermarket.");
+            return;
+        }
+        if (stock[productIndex].getQuantity() < quantity) {
+            System.out.println("We are sorry to inform you that we don't have this quantity available. In stock we have " + product.getQuantity() + "of this.");
+            return;
+        }
+        if (getProductIndex(product) >= 0) {
             if (stock[productIndex].getQuantity() > quantity) {
                 cart.addProduct(stock[productIndex].extract(quantity));
                 emptySpace += quantity;
@@ -42,25 +56,26 @@ public class Supermarket {
                 cart.addProduct(stock[productIndex].extract(quantity));
                 stock[productIndex] = null;
                 emptySpace += quantity;
-            } else if (stock[productIndex].getQuantity() < quantity){
-               return;
             }
-        } else if (productInStock(productName) < 0){
-            System.out.println("We are sorry to inform you that the product request is not present in our supermarket.");
-
-        } else {
-            System.out.println("Something went wrong. Code ERRORCART1");
-
         }
     }
 
     //return index of product if in stock, -1 if not
-    public int productInStock(Product product) {
+    private int getProductIndex(Product product) {
         for (int i = 0; i < this.stock.length; i++) {
-            this.stock[i] = product;
-            return i;
+            if (stock[i] != null && Objects.equals(stock[i].getName(), product.getName())) {
+                return i;
+            }
         }
         return -1;
     }
 
+    private int findEmptyStock() {
+        for (int i = 0; i < stock.length; i++) {
+            if (stock[i] == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

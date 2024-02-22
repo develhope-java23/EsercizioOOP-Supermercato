@@ -6,6 +6,11 @@ public class Product {
     private float price;
 
     private ProductCategory category;
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -19,15 +24,15 @@ public class Product {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.category=category;
+        this.category = category;
     }
 
-    public float getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void addQuantity(int quantity) {
+        this.quantity += quantity;
     }
 
     public float getTotalPrice() {

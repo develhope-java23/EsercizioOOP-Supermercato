@@ -4,7 +4,7 @@ public class Main {
         Product prodotto = new Product("pizza", 5, 2.0f, ProductCategory.FOOD);
         System.out.println(prodotto.getTotalPrice());
 
-        Product prodotto1 = new Product("Asparago", 3, 0.5f, ProductCategory.FOOD);
+        Product prodotto1 = new Product("Asparago", 10, 0.5f, ProductCategory.FOOD);
         System.out.println(prodotto1.getTotalPrice());
 
         Product prodotto2 = prodotto.extract(2);
@@ -26,11 +26,16 @@ public class Main {
         Product asparagiEsseNon = prodotto1.extract(2);
         esseNon.add(asparagiEsseNon);
         System.out.println(esseNon);
+        esseNon.add(asparagiEsseNon);
+        System.out.println(esseNon);
+        esseNon.add(asparagiEsseNon);
+        System.out.println(esseNon);
+
         Cart esseNonBuyer = new Cart(50, 3);
         esseNon.buy(esseNonBuyer, asparagiEsseNon, 1);
         System.out.println(esseNonBuyer);
         System.out.println(esseNon);
-        esseNon.buy(esseNonBuyer, asparagiEsseNon, 1);
+        esseNon.buy(esseNonBuyer, asparagiEsseNon, 3);
         System.out.println(esseNonBuyer);
         System.out.println(esseNon);
 
