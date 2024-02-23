@@ -6,6 +6,11 @@ public class Product {
     private float price;
 
     private ProductCategory category;
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -19,7 +24,15 @@ public class Product {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.category=category;
+        this.category = category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void addQuantity(int quantity) {
+        this.quantity += quantity;
     }
 
     public float getTotalPrice() {
@@ -27,9 +40,9 @@ public class Product {
         return this.quantity * this.price;
     }
 
-    public Product extract(int quantity){
+    public Product extract(int quantity) {
 
-        if (quantity > this.quantity){
+        if (quantity > this.quantity) {
             System.out.println("Err");
             return null;
         }
